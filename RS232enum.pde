@@ -261,6 +261,7 @@ char command[20];
 void loop() 
 {
         // EMULATE DEBUG
+        /*
         delay(10000); // wait 10 seconds before starting
         for (byte i=0; i < pinslen; i++) // toggles pin state to 01010101 for debug testing
                 bitWrite(pinstatebuf[i/8], i%8, i&1); 
@@ -272,6 +273,7 @@ void loop()
                 bitWrite(pinstatebuf[i/8], i%8, i&1); 
         active_per_pin_scan(4);
         while (1) {} // endless loop
+        */
         
 
         // WAIT FOR COMMAND
