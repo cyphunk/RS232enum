@@ -34,7 +34,7 @@ void passive_parallel_scan (uint32_t usperrx)
 #ifdef DEBUGLOOPS                       
                         loops++;
 #endif                        
-                        state = digitalRead(pins[rx]);
+                        state = digitalRead(pins[rx]) ? HIGH : LOW; // BUGBUG?
 #ifdef DEBUGSTATEBUF     
                         pfmt("cmp: %d != bitRead(pinstatebuf[%d]=%d, %d)=%d\r\n",state, rx/8, pinstatebuf[rx/8], rx%8, bitRead(pinstatebuf[rx/8], rx%8) );
 #endif
@@ -97,7 +97,7 @@ void active_parallel_scan (uint32_t usperrx)
 #ifdef DEBUGLOOPS        
                                                 loops++;
 #endif
-                                                state = digitalRead(pins[rx]);
+                                                state = digitalRead(pins[rx]) ? HIGH : LOW; // BUGBUG?
                                                 if (state != bitRead(pinstatebuf[rx/8], rx%8) ) {
                                                         append_to_report(rx, state);
                                                         bitWrite(pinstatebuf[rx/8], rx%8, state);
@@ -160,7 +160,7 @@ void active_per_pin_scan (uint32_t usperrx)
 #ifdef DEBUGLOOPS        
                                                 loops++;
 #endif                                        
-                                                state = digitalRead(pins[rx]);
+                                                state = digitalRead(pins[rx]) ? HIGH : LOW; // BUGBUG?
 #ifdef DEBUGSTATEBUF       
                                                 pfmt("cmp: %d != bitRead(pinstatebuf[%d]=%d, %d)=%d\r\n",state, rx/8, pinstatebuf[rx/8], rx%8, bitRead(pinstatebuf[rx/8], pat%8) );
 #endif

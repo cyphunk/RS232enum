@@ -1,5 +1,5 @@
 /* 
- RS232enum  (v0.2.0 20101014)
+ RS232enum  (v0.2.1 20101026)
  When you are presented with pins that you suspect provide Serial but
  you do not have access to the documentation.  Connect your Arduino
  to all of the pins (limited by the number of Ditial pins you have on
