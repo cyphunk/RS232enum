@@ -14,7 +14,7 @@
  */
 void passive_parallel_scan (uint32_t usperrx) 
 {
-        pfmt(     "-> passive_parallel_scan(wait %lu microseconds for each iteration)\r\n",usperrx);
+        ppgm(PSTR("-> passive_parallel_scan()\r\n"));
         pfmt(     "   listens to all pins in parallel for %lu microseconds\r\n",usperrx);
         ppgm(PSTR("   tx stimulation and baudrate check not needed\r\n"));
         ppgm(PSTR("   prints pins whose bits change at the end of test\r\n"));
@@ -190,17 +190,22 @@ void active_per_pin_scan (uint32_t usperrx)
 void pins_state () 
 {
         // align names and pin state columns by finding the max string length
-        
         ppgm(PSTR("pin:      "));
         for (byte i = 0; i < pinslen; i++) { 
                 pfmt("%s  ", pinnames[i]);
         }
-        ppgm(PSTR("\r\nstate:    "));
+        ppgm(PSTR("\r\nstatebuf: "));
         for (byte i = 0; i < pinslen; i++) {
                 // align columns using space:
                 for (byte j = 0; j < strlen(pinnames[i])-1; j++)
                         pfmt(" ");
                 pfmt("%d  ", bitRead(pinstatebuf[i/8], i%8));
+        }
+        ppgm(PSTR("\r\ncurrent:  "));
+        for (int i = 0; i < pinslen; i++) {
+                for (byte j = 0; j < strlen(pinnames[i])-1; j++)
+                        pfmt(" ");
+                pfmt("%d  ", digitalRead(pins[i]));
         }
         ppgm(PSTR("\r\n"));
 }
@@ -257,7 +262,7 @@ void print_report_buffer()
                 if (i%32==0) { 
                         pfmt("\r\n"); 
                 }
-                p ("%d ", reportbuf[i]);
+                pfmt("%d ", reportbuf[i]);
         }
 }
 void print_all_pins () 
