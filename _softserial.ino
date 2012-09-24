@@ -10,6 +10,8 @@ void softserial_setup (uint32_t baud)
         // tested this with the Teensy++ at both 16MHZ and 8MHZ at all of the 
         // supported baudrates.
         bitDelay     = _bitPeriod - clockCyclesToMicroseconds(12); // aprox time of digitalWrite?
+        // if buggy, and not using teensy++ but a uno or other ardunio, perhaps try:
+        //bitDelay     = _bitPeriod - clockCyclesToMicroseconds(50);
         halfBitDelay = bitDelay / 2;
 }
 void softserial_write(uint8_t _transmitPin, uint8_t b)
