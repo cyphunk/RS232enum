@@ -27,6 +27,7 @@
  5. (optional) if your board does not have enough memory uncomment
     the "#define SHRINK" line. Note: "information" function will be
     disabled as a result
+ 6. (optional) set Arduino CPU to 8MHZ if using 3.3v logic
 
  USAGE:
  -  load sketch and attach to arduino at 115200 baud
@@ -51,5 +52,8 @@
     from companion sketch files, however it doesn't work when you return
     or have as arguments non standard arduino types. Hence, sometimes we
     we declare them, and sometimes not
-
+ -  As of Arduino 1 the softserial delay required per baudrate definitions.
+    Don't ask why. This means that only common buadrates are supported.
+    Perhaps it was always this way. Also, with the new changes I did not
+    test if older Arduino versions worked so just use Arduino >= v1
  This code is public domain, abuse as you wish and at your own risk

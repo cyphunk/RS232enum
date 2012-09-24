@@ -1,5 +1,5 @@
 /* 
- RS232enum  (v0.2.1 20101026)
+ RS232enum  (v0.3.0 20110924)
  When you are presented with pins that you suspect provide Serial but
  you do not have access to the documentation.  Connect your Arduino
  to all of the pins (limited by the number of Ditial pins you have on
@@ -28,6 +28,7 @@
  5. (optional) if your board does not have enough memory uncomment
     the "#define SHRINK" line. Note: "information" function will be
     disabled as a result
+ 6. (optional) set Arduino CPU to 8MHZ if using 3.3v logic
 
  USAGE:
  -  load sketch and attach to arduino at 115200 baud
@@ -52,6 +53,10 @@
     from companion sketch files, however it doesn't work when you return
     or have as arguments non standard arduino types. Hence, sometimes we
     we declare them, and sometimes not
+ -  As of Arduino 1 the softserial delay required per baudrate definitions.
+    Don't ask why. This means that only common buadrates are supported.
+    Perhaps it was always this way. Also, with the new changes I did not
+    test if older Arduino versions worked so just use Arduino >= v1
 
  This code is public domain, abuse as you wish and at your own risk
  */
@@ -74,17 +79,23 @@ char    *    pinnames[] = {   "aaa",      "b", "ccccc" };
 //                           PIN_D7,   PIN_E0,   PIN_E1,    PIN_C0};
 //char  *    pinnames[] = {    "aa",    "bbb",     "cc",       "d",    "eeee",     "ff",     "gg",     "hh",
 //                             "ii", "jjjjjj",     "kk",      "ll"};
+// Client test:
+// just connect the 3v3 sparkfun with gnd at teensy gnd, rx at F2, tx at F1
+//byte       pins[]     = {  PIN_F2,   PIN_F1 };
+//char  *    pinnames[] = {    "rx",     "tx" };
+
 
 // DEFINE BAUDRATES
-//uint32_t  baudrates[] = { 300, 600, 1200, 1800, 2400, 4800, 7200, 9600, 14400, 19200, 38400, 57600, 115200 };
-//uint32_t  baudrates[] = { 0, 100000}; // range from 1 to 100000  NOT IMPLEMENTED YET
+// supporte baudrates:
+//uint32_t  baudrates[] = { 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 31250, 38400, 57600, 115200 };
 //uint32_t  baudrates[] = { 9600 };     // dont search, assume 9600
 uint32_t    baudrates[] = { 9600, 115200};
 
 // DEFINE TX WAKEUP PATTERNS (LSB first):
 //uint16_t txpatterns[] = { 0x0000, 0xFFFF, 0x0a00, ~0x0a00 };         // 10=0xA=CR
 //byte     txpatterns[] = { B11111111,B00000000,B01010101,B10101010 }; // 10=0xA=CR, 0x41="A"
-byte       txpatterns[] = { 0x0a, 0x0d, 0x41 };                        // 10=0xA=CR, 0x41="A"
+//byte     txpatterns[] = { 0x0a, 0x0d, 0x41 };                      
+byte       txpatterns[] = { 0x0a };                        
 
 //#define SHRINK        // uncomment to reduce size of program. information() 
                         // function will be disabled

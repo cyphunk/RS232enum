@@ -1,4 +1,4 @@
-#!/usr/bin/python2.5
+#!/usr/bin/env python
 #    CHECK YOUR  ^^^  VERSION
 #    THE vvvvvvvv LIB NEEDS TO BE INSTALLED
 # http://pyserial.sourceforge.net/pyserial_api.html
@@ -12,14 +12,21 @@ if __name__ == "__main__":
         device = glob.glob("/dev/tty.usbserial*")[0]
         if len(sys.argv) > 1:
                 baud = sys.argv[1]
+                if baud not in ["300", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "31250", "38400", "57600", "115200"]:
+                        print "RS232enum only supports baudrates:"
+                        print "300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 31250, 38400, 57600, 115200"
+                        exit(1)
+		if baud
         else:
                 print "provide baudrate as arguemnt"
-                exit
+                exit(1)
                 
         ser = serial.Serial(device, baud) #, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
         print "opened tty: %s"%ser.portstr
         print "valid baudrates:"
         print ser.BAUDRATES
+	print "RS232enum only supports baudrates:"
+	print "300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 31250, 38400, 57600, 115200"
         print "valid bytesizes:"
         print ser.BYTESIZES
         print "valid parities:"
