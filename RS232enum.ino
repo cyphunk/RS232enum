@@ -80,7 +80,6 @@ char    *    pinnames[] = {   "aaa",      "b", "ccccc" };
 //char  *    pinnames[] = {    "aa",    "bbb",     "cc",       "d",    "eeee",     "ff",     "gg",     "hh",
 //                             "ii", "jjjjjj",     "kk",      "ll"};
 // Client test:
-// just connect the 3v3 sparkfun with gnd at teensy gnd, rx at F2, tx at F1
 //byte       pins[]     = {  PIN_F2,   PIN_F1 };
 //char  *    pinnames[] = {    "rx",     "tx" };
 
