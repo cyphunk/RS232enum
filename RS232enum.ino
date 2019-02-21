@@ -108,9 +108,7 @@ byte       txpatterns[] = { 0x0a };
  */
 
 
-
-
-
+uint32_t mstous(uint32_t); // resolves https://github.com/cyphunk/RS232enum/issues/1
 
 //needed to put help strings into flash
 #include <avr/pgmspace.h>
@@ -320,18 +318,3 @@ void loop()
         Serial.print("> ");
         }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
