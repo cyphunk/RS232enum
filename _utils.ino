@@ -21,7 +21,7 @@ void ppgm(const char *str)
         char c;
         if(!str) return;
         while((c = pgm_read_byte(str++)))
-                Serial.print(c,BYTE);
+                Serial.write(c);
 }
 extern int __bss_end;
 extern int *__brkval;
@@ -112,4 +112,3 @@ void ustotime(uint32_t us)
         uint32_t seconds = (s % 3600) % 60;
         pfmt("%02lu:%02lu:%02lu\r\n", hours, minutes, seconds);
 }
-
